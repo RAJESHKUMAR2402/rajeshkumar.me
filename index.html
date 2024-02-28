@@ -1,14 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-	<title>
-		First Web Page
-	</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Web Page</title>
+    <style>
+        body {
+            font-family: 'cursive', sans-serif; /* Use cursive font */
+            text-align: center;
+            margin-top: 200px;
+            font-size: 36px; /* Increased font size */
+            font-weight: bold; /* Bold font */
+            color: #ffffff; /* Text color (white) */
+            background-color: #D888A0; /* Background color */
+        }
+
+        .letter {
+            display: inline-block;
+            opacity: 0;
+            transform: translateY(1em);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        @media only screen and (max-width: 600px) {
+            body {
+                font-size: 18px;
+            }
+        }
+    </style>
 </head>
 
 <body>
-	RAJESH KUMAR MYLSAMY
+    <div id="nameContainer">RAJESH_KUMAR_MYLSAMY</div>
+
+    <script>
+        let nameContainer = document.getElementById('nameContainer');
+        let originalText = nameContainer.innerHTML;
+        let newText = '';
+
+        for (let i = 0; i < originalText.length; i++) {
+            newText += `<span class="letter">${originalText[i]}</span>`;
+        }
+
+        nameContainer.innerHTML = newText;
+
+        let letters = document.querySelectorAll('.letter');
+        letters.forEach((letter, index) => {
+            setTimeout(() => {
+                letter.style.opacity = '1';
+                letter.style.transform = 'translateY(0)';
+            }, 100 * index);
+        });
+    </script>
 </body>
 
 </html>
