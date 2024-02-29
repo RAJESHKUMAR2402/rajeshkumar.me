@@ -12,27 +12,75 @@
             margin-top: 300px;
             font-size: 45px; /* Increased font size */
             font-weight: bold; /* Bold font */
-            color: #ffffff; /* Text color (white) */
-            background-color: #D888A0; /* Background color */
+            color: #000000; /* Dark text color in light mode */
+            background-color: #f0f0f0; /* Light theme background color */
+            transition: background-color 0.5s, color 0.5s;
         }
 
         .letter {
-            display: inline-block;
+           /* display: inline-block;*/
             opacity: 0;
             transform: translateY(1em);
             transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .theme-toggle {
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 10px;
+            font-size: 0; /* Hide text visually */
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #ffffff; /* Button color */
+            background-color: #61a0a8; /* Light theme button background color */
+            border-radius: 15px; /* Rounded corners */
+            transition: background-color 0.5s;
+        }
+
+        .theme-toggle:hover {
+            background-color: #84c7d0; /* Button background color on hover */
+        }
+
+        .theme-icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .dark-theme {
+            background-color: #333333; /* Dark theme background color */
+            color: #ffffff; /* Light text color in dark mode */
+        }
+
+        .dark-theme .theme-toggle {
+            background-color: #1a1a1a; /* Dark theme button background color */
         }
 
         @media only screen and (max-width: 600px) {
             body {
                 font-size: 18px;
             }
+
+            .theme-toggle {
+                position: static;
+                margin-top: 20px;
+                border-radius: 10px; /* Adjusted for smaller screens */
+            }
         }
     </style>
 </head>
 
 <body>
-    <div id="nameContainer">RAJESH_KUMAR_MYLSAMY</div>
+    <div id="nameContainer">RAJESH KUMAR MYLSAMY</div>
+    <button class="theme-toggle" id="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+        <svg class="theme-icon" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"></path>
+            <path fill="none" d="M0 0h24v24H0z"></path>
+            <path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zM5 14h2v1H5zm0-3h2v1H5zm0-3h2v1H5zm0-3h2v1H5zm0-3h2v1H5zm7-3h2v1h-2zm0 3h2v1h-2zm0 3h2v1h-2zm0 3h2v1h-2zm0 3h2v1h-2zm2-12v1h2v-1h-2zm0 3v1h2v-1h-2zm0 3v1h2v-1h-2zm0 3v1h2v-1h-2zm0 3v1h2v-1h-2zm2-12v1h2v-1h-2zm0 3v1h2v-1h-2zm0 3v1h2v-1h-2zm0 3v1h2v-1h-2zm0 3v1h2v-1h-2z"></path>
+        </svg>
+    </button>
 
     <script>
         let nameContainer = document.getElementById('nameContainer');
@@ -52,6 +100,10 @@
                 letter.style.transform = 'translateY(0)';
             }, 100 * index);
         });
+
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+        }
     </script>
 </body>
 
